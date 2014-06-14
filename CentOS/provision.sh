@@ -1,7 +1,7 @@
 #!/bin/sh
 
 yum -y install http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-yum -y install docker-io
+yum -y install docker-io git
 usermod -G docker vagrant
 service docker start
 chkconfig docker on
@@ -22,4 +22,21 @@ iptables --append FORWARD --in-interface eth0 -j ACCEPT
 
 service iptables save
 service iptables start
+
+
+groupadd chef
+usermod -G chef vagrant
+
+mkdir -p /var/chef/cookbooks
+chgrp -R chef /var/chef/
+chmod -Rf g+ws /var/chef/
+
+cd /var/chef/cookbooks
+git init
+touch .gitignore
+git add .
+git commit -am 'init'
+
+knife cookbook site install build-essential
+
 
