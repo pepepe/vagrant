@@ -1,0 +1,15 @@
+# -*- mode: ruby -*-
+# # vi: set ft=ruby :
+
+ip_address = "192.168.10.10"
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "CentOS-6.5"
+  config.vm.box_url = "http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.5-x86_64-v20140110.box" 
+
+  config.vm.network :private_network, ip: ip_address
+  config.vm.synced_folder "share", "/home/vagrant/share"
+#  config.vm.synced_folder "../docker-images", "/var/lib/docker"
+
+  config.vm.provision :shell, :path => "provision.sh"
+end
