@@ -2,7 +2,7 @@
 
 # dockerをインスコする
 yum -y install http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-yum -y install docker-io git
+yum -y install docker-io git jq
 service docker start
 chkconfig docker on
 usermod -G docker vagrant
@@ -52,9 +52,8 @@ gem install knife-solo --no-ri --no-rdoc
 
 
 # dockerコンテナにSSHするための準備
-mkdir /home/vagrant/.ssh
-cp /vagrant/share/id_rsa.docker /home/vagrant/id_rsa
-cp /vagrant/share/id_rsa.docker.pub /home/vagrant/id_rsa.pub
+cp /vagrant/share/id_rsa.docker /home/vagrant/.ssh/id_rsa
+cp /vagrant/share/id_rsa.docker.pub /home/vagrant/.ssh/id_rsa.pub
 chown -R vagrant:vagrant /home/vagrant/.ssh
 chmod -R g-rwx,o-rwx /home/vagrant/.ssh
 
