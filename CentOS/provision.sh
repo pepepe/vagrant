@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# docker‚ðƒCƒ“ƒXƒR‚·‚é
+# dockerã‚’ã‚¤ãƒ³ã‚¹ã‚³ã™ã‚‹
 yum -y install http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
 yum -y install docker-io git jq
 service docker start
@@ -8,7 +8,7 @@ chkconfig docker on
 usermod -G docker vagrant
 
 
-# ƒzƒXƒg‚©‚ç’¼ÚdockerƒRƒ“ƒeƒi‚ÉƒAƒNƒZƒX‚Å‚«‚é‚æ‚¤‚É‚·‚é
+# ãƒ›ã‚¹ãƒˆã‹ã‚‰ç›´æŽ¥dockerã‚³ãƒ³ãƒ†ãƒŠã«ã‚¢ã‚¯ã‚»ã‚¹ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
 sed -ir 's/net\.ipv4\.ip_forward = 0/net.ipv4.ip_forward = 1/g' /etc/sysctl.conf
 
 iptables --flush
@@ -26,10 +26,10 @@ service iptables save
 service iptables start
 
 
-# chef‚ðƒCƒ“ƒXƒR‚·‚é
+# chefã‚’ã‚¤ãƒ³ã‚¹ã‚³ã™ã‚‹
 yum -y install gcc zlib-devel openssl-devel sqlite sqlite-devel
 
-# chef‚è‚½‚¢‚Ì‚ÅV‚µ‚¢ruby‚ð“ü‚ê‚é
+# chefã‚ŠãŸã„ã®ã§æ–°ã—ã„rubyã‚’å…¥ã‚Œã‚‹
 git clone git://github.com/sstephenson/rbenv.git /home/vagrant/.rbenv
 
 echo 'export RBENV_ROOT="/home/vagrant/.rbenv"' >> /home/vagrant/.rbenvrc
@@ -51,7 +51,7 @@ chown -R vagrant:vagrant /home/vagrant/.rbenv
 gem install knife-solo --no-ri --no-rdoc
 
 
-# dockerƒRƒ“ƒeƒi‚ÉSSH‚·‚é‚½‚ß‚Ì€”õ
+# dockerã‚³ãƒ³ãƒ†ãƒŠã«SSHã™ã‚‹ãŸã‚ã®æº–å‚™
 cp /vagrant/share/id_rsa.docker /home/vagrant/.ssh/id_rsa
 cp /vagrant/share/id_rsa.docker.pub /home/vagrant/.ssh/id_rsa.pub
 chown -R vagrant:vagrant /home/vagrant/.ssh
